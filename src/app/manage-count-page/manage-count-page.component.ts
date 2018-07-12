@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CounterService } from '../counter.service';
 
 @Component({
   selector: 'app-manage-count-page',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageCountPageComponent implements OnInit {
 
-  constructor() { }
+  // services are ALWAYS connected in the constructor
+  constructor(
+    // our instance of the "CounterService" class (for access to "currentCount")
+    public myCounterServ: CounterService
+  ) { }
 
   ngOnInit() {
   }
 
+  plusFive() {
+    // use service's increment() method
+    this.myCounterServ.increment();
+    this.myCounterServ.increment();
+    this.myCounterServ.increment();
+    this.myCounterServ.increment();
+    this.myCounterServ.increment();
+  }
+
+  minusFive() {
+    // use service's decrement() method
+    this.myCounterServ.decrement();
+    this.myCounterServ.decrement();
+    this.myCounterServ.decrement();
+    this.myCounterServ.decrement();
+    this.myCounterServ.decrement();
+  }
+
+  reset() {
+    // use service's zero() method
+    this.myCounterServ.zero();
+  }
 }

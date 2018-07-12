@@ -1,3 +1,8 @@
-<p>
-  manage-count-page works!
-</p>
+<h2>Manage Count</h2>
+
+<!-- use service's getCount() method -->
+<b>{{myCounterServ.getCount()}}</b>
+
+<button (click)="plusFive()">+5</button>
+<button (click)="minusFive()">-5</button>
+<button (click)="reset()">Reset</button>

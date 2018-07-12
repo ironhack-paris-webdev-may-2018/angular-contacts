@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CounterService } from './counter.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(
+    public myCounterServ: CounterService
+  ) { }
+
+  ngOnInit() {
+    this.myCounterServ.start();
+  }
+
+  ngOnDestroy() {
+    this.myCounterServ.stop();
+  }
 }
