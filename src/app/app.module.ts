@@ -8,6 +8,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
+import { ManageCountPageComponent } from './manage-count-page/manage-count-page.component';
 
 
 const routesArray: Routes = [
@@ -23,6 +24,9 @@ const routesArray: Routes = [
   // router.get("/contact/:blahId", ...) in Express
   { path: "contact/:blahId", component: ContactDetailsComponent },
 
+  // router.get("/counter", ...) in Express
+  { path: "counter", component: ManageCountPageComponent },
+
   // Handle all other URLs (MUST BE LAST)
   { path: "**", component: NotFoundPageComponent }
 ];
@@ -34,7 +38,8 @@ const routesArray: Routes = [
     LandingPageComponent,
     NotFoundPageComponent,
     ContactListComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    ManageCountPageComponent
   ],
   imports: [
     BrowserModule,
