@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Contact, contactList } from '../contact-list/contact-data';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Contact } from '../contact-list/contact-data';
+import { ContactService } from '../contact.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -14,7 +15,11 @@ export class ContactDetailsComponent implements OnInit {
   // services are ALWAYS connected in the constructor
   constructor(
     // our instance of the "ActivatedRoute" class (for URL parameters)
-    private myActivatedRouteServ: ActivatedRoute
+    private myActivatedRouteServ: ActivatedRoute,
+    // our instance of the "ContactService" class (for access to the contacts array)
+    private myContactServ: ContactService,
+    // our instance of the "Router" class (for redirecting)
+    private myRouterServ: Router
   ) { }
 
   ngOnInit() {
@@ -27,12 +32,20 @@ export class ContactDetailsComponent implements OnInit {
         this.contactId = myParams.get("blahId");
 
         // search the array for the contact with the right ID
-        contactList.forEach((oneContact) => {
-          if (oneContact._id === this.contactId) {
-            this.contactItem = oneContact;
-          }
-        });
+        this.contactItem = this.myContactServ.findOneContact(this.contactId);
       });
   }
 
+  confirmDelete() {
+    const { name } = this.contactItem;
+
+    const isOkay = confirm(`Delete contact ${name}?`);
+
+    if (isOkay) {
+      this.myContactServ.deleteOneContact(this.contactId);
+      // redirect away to the list page
+      this.myRouterServ.navigateByUrl("/contacts");
+                      // res.redirect("/contacts") in Express
+    }
+  }
 }
