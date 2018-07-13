@@ -1,0 +1,10 @@
+<h2>Chuck Norris Jokes</h2>
+
+<button (click)="getAJoke()">Get a New Joke</button>
+
+<ul>
+  <li *ngFor="let oneJoke of jokes">
+    <h3>Joke #{{oneJoke.id}}</h3>
+    <p>{{oneJoke.joke}}</p>
+  </li>
+</ul>

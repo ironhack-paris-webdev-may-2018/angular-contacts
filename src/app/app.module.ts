@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -9,6 +10,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { ManageCountPageComponent } from './manage-count-page/manage-count-page.component';
+import { ChuckJokesComponent } from './chuck-jokes/chuck-jokes.component';
 
 
 const routesArray: Routes = [
@@ -27,6 +29,9 @@ const routesArray: Routes = [
   // router.get("/counter", ...) in Express
   { path: "counter", component: ManageCountPageComponent },
 
+  // router.get("/chuck", ...) in Express
+  { path: "chuck", component: ChuckJokesComponent },
+
   // Handle all other URLs (MUST BE LAST)
   { path: "**", component: NotFoundPageComponent }
 ];
@@ -39,12 +44,14 @@ const routesArray: Routes = [
     NotFoundPageComponent,
     ContactListComponent,
     ContactDetailsComponent,
-    ManageCountPageComponent
+    ManageCountPageComponent,
+    ChuckJokesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routesArray)
+    RouterModule.forRoot(routesArray),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
